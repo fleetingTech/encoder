@@ -1,21 +1,21 @@
-﻿using encoder.Encoders;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections;
+using encoder.Encoders;
+using System.Linq;
 
-namespace encoder
+namespace encoder_test
 {
-    class Program
+    [TestClass]
+    public class Baudot_Continental_Test
     {
-        static void Main(string[] args)
+        [TestMethod]
+        public void basic()
         {
-            Console.WriteLine("Hello World!");
-
-
             encoder.Encoders.Baudot_Continental bc = new encoder.Encoders.Baudot_Continental();
             string test = "Hi".ToUpper();
             BitArray msg = bc.Encode(test);
             string retr = bc.Decode(msg);
-            return;
+            StringAssert.Equals(test, retr);
         }
     }
 }
